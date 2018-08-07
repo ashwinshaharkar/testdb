@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "merchant-center-1532762389919",
+  "private_key_id": "f5e78b6a7027a17b6621a3c42cbdadf1e40547a5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDxUTEA4T6ng9+n\nIkZ5XaBv2FR9BSqyhAvOPKoJvS3pp8fCjnSezgYg/Wgv1LRc5z6+HV1o87Ex4u4I\nHihPW7APWlTG3hKmRoym3PcHPpnStqXBVtAvost7Fk7J4vX28xtxMbVF8Mo9rTbh\nvU2D1tuSk/3W1ekuAxY/8ZPWe7Bnh4ixVEFfhKr1XjM9f+xsonepaLzI6i5mZUXT\nUESu2wTEU/cGP0Xw6oIQwIeTSknYVC2Mfz2Gzh6Y6R5X55T2KNYfAJe+5+fWwUN5\nYxlPc9eLiRHCZzN77IMKB8GeIowH0nFpFJCtkL+rVtoDv2RwLU7aaTTOD2kwfJsE\nHQ+yYTQ7AgMBAAECggEAMDixOiPIiWDoyFUpEAeNj8wC1hi6N4H7efLVZ6zOB+rn\nGBGvbCxvPRhmQWiXwhjTiNoFWHuZ5QYb2rNsCq+ftvGuDy9BOsjOQmnVUzVHN7wX\n01Ktt1cooigLBny7+eUKjswIFTnQsBJ07RcO7lF4/wljqBKGzhL/1zdG+40r6wPf\nB6gSiDEzC1kxc71qy9BISfGSCEswFdN9gd4dq2QHeRBkFg32DlzQZiAJk7DMI9Ny\nGwWvj7ZVUS73C6/gvjsVmhxtHa8nFeK+b3iXrnX6ZpNAJta5GrPUoq/z2k8zxyDH\nptrLTiocSiLYYNzxaIwHS7VoEvztDEwMQ4dbM0eVAQKBgQD+mwuijG2iXrnh+Yc+\nE6MNI7BCfSvtloLkpBamBNfPJ4CWnt7ehXEP8GrDydgqZlxjVs0Qb6UWS5iZ579U\nRdQvBmkx6vzHMxkiw66K5uzO3mOFouLWNwZmeo7wLuzxTjd7MWWM4JqnGbxa3XRF\niwJqEe10LJPc+7CLjjNw+MVV0QKBgQDyo4QA3zcHZ6TZYRSzzAkwJdI0Cw4AXLdP\nGHqHLVdxuIIc4GCi6t72hpn0MWT9a2htMQIxrSxf4uPThDIErKi2UfHNeAmvebXO\nGI8KcGR0zgh8IZJwogHN7a58eVCKLlW1K0gSe2EruI9YIzfXUg+HlWkRoTp9y4eN\nq6NFsPQQSwKBgQDG8U2ZGNN94Tir2zeTCPMKDE3o1jfh8Q6cK59K4FPlGT+/8anC\nBFEBHGHAVNKk5tDgCm43npVHo5A9CjmVVu7iQ8ck6zHTURkd8ftLq/9z8Y+gV1Oa\nAOruXmucP36DWxO9Hi70cnhFg7WK5qm4wVMEoLeDZGWxcbVUhqupZamEUQKBgQDp\n+Ltli9kojszrwS2RYwLJJu9XuAE8YCtzXgtpJlPYGS9+YO9OqmVuG8WBL9BOfrAn\n+sY+2Nqda9B9OlBxKX1WshYVJ9dPGnIx1oS4cECuUa7k5AquCcrrpHJJHUKIvL1x\nAddx2v+MhV/UgcFrJHpNJ8o1cd9RRl3kQsoifcwbmQKBgQC6XLeDk/WsmC2RFP8u\nduKFVv4nOR4Lrzk/onMcs66mpUu919FABneztCdT9np/5x1tUBB3zjztaTDt+MpD\nu78Z3nbijUrcuA1+HL9b38vZZbrtfZKlLrM3ENNPoJlwy+wgQJ8vuIrh1QbDnfun\nW58OQxw6v6bBM3KUOnaIvMYyJg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "merchant-center-1532762389919@merchant-center-1532762389919.iam.gserviceaccount.com",
+  "client_id": "101960869450302363473",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/merchant-center-1532762389919%40merchant-center-1532762389919.iam.gserviceaccount.com"
+}
