@@ -22,7 +22,7 @@ $client->setIncludeGrantedScopes(true);   // incremental auth
 
 // If the user has already authorized this app then get an access token
 // else redirect to ask the user to authorize access to Google Analytics.
-$merchantId = '124020921';
+$merchantId = '123316573';
 if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
   // Set the access token on the client.
   $client->setAccessToken($_SESSION['access_token']);
@@ -32,17 +32,17 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
   $parameters = array();
 
   while (!empty($products->getResources())) {
-     foreach ($products->getResources() as $product) {
-       echo "a111";
-       printf("%s %s\n", $product->getId(), $product->getTitle());
-     }
-     if (!empty($products->getNextPageToken())) {
-       break;
-     }
+      foreach ($products->getResources() as $product) {
+        //printf("%s %s\n", $product->getId(), $product->getTitle());
+        //echo "<pre>";
+      }
+      if (!empty($products->getNextPageToken())) {
+        break;
+      }
      $parameters['pageToken'] = $products->nextPageToken;
      $products = $service->products->listProducts($merchantId, $parameters);
   }
-  echo "<pre>"; print_r($products); die;
+  echo "<pre>"; print_r($products->getResources());die;
 } else {
   $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/gcss/oauth2callback.php';
   header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
