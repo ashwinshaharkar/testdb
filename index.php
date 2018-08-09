@@ -9,7 +9,6 @@ session_start();
 // from the client_secretes.json you downloaded from the developer console.
 $client = new Google_Client();
 $client->setAuthConfig(__DIR__ . '/client_secrets.json');
-//$client->setAccessType("offline");        // offline access
 $client->setAccessType('online'); // default: offline
 $client->setIncludeGrantedScopes(true);   // incremental auth
 $client->setApplicationName('Content API for Shopping Samples');
@@ -22,7 +21,7 @@ $client->setIncludeGrantedScopes(true);   // incremental auth
 
 // If the user has already authorized this app then get an access token
 // else redirect to ask the user to authorize access to Google Analytics.
-$merchantId = '124020921';
+$merchantId = '123316573';
 if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
   // Set the access token on the client.
   $client->setAccessToken($_SESSION['access_token']);
@@ -33,8 +32,8 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 
   while (!empty($products->getResources())) {
      foreach ($products->getResources() as $product) {
-       echo "a111";
        printf("%s %s\n", $product->getId(), $product->getTitle());
+       echo "<br/>";
      }
      if (!empty($products->getNextPageToken())) {
        break;
