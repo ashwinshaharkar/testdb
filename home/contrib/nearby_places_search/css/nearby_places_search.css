@@ -1,0 +1,65 @@
+/**
+ * Near by places search css file.
+ */
+.adm-chkbox .form-type-checkbox {
+  float: left;
+  width: 16%;
+}
+
+#container {
+  width: 100%;
+  margin: 10px auto;
+  clear: both;
+  display: table;
+}
+
+#map-content {
+  float: right;
+  width: 79%;
+  clear: both;
+}
+
+#navbar {
+  border: 1px solid #d6d6d6;
+  float: left;
+  height: 585px;
+  overflow: auto;
+  padding-left: 15px;
+  padding-top: 0;
+  width: 18%;
+}
+
+#map {
+  height: 500px;
+  margin-top: 15px;
+}
+
+#map-container {
+  float: left;
+  height: 500px;
+  margin-top: 15px;
+  width: 100%;
+  display: inline-block;
+}
+
+.gm-style .gm-style-iw {
+  width: 200px !important;
+}
+
+#cust_btn {
+  float: left;
+  line-height: 6px;
+  margin-left: 10px;
+  margin-top: -13px;
+  padding: 10px;
+}
+
+#address_cls input {
+  float: left;
+  padding: 6px;
+}
+
+#bottom-section {
+  clear: both;
+  width: 100%;
+}

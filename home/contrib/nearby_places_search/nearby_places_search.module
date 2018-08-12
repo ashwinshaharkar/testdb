@@ -1,0 +1,132 @@
+<?php
+
+/**
+ * @file
+ * Contains nearby_places_search.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function nearby_places_search_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the cyb_helpdesk module.
+    case 'help.page.nearby_places_search':
+      $output = '';
+      $output .= check_markup(file_get_contents(dirname(__FILE__) . "/README.md"));
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_FORM_ID_from_alter().
+ */
+function nearby_places_search_form_nearby_places_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['#theme'] = ['nearby_places_search_block'];
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nearby_places_search_theme($existing, $type, $theme, $path) {
+  return [
+    'nearby_places_search_block' => [
+      'template' => 'nearby-places-search-block',
+      'render element' => 'form',
+    ],
+  ];
+}
+
+/**
+ * Verifies marker library is present.
+ */
+function nearby_places_search_library_check() {
+  if (function_exists('libraries_get_libraries')) {
+    $library = libraries_get_libraries();
+    if (!isset($library['nearby_places_search.markers'])) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_library_info_alter().
+ *
+ * Change the google map library url to add the custom Google API key.
+ */
+function nearby_places_search_library_info_alter(&$libraries, $extension) {
+  $config = \Drupal::config('nearby_places_search.settings');
+  $js_url_query = '';
+  if (isset($libraries['google-map-apis'])) {
+    $old_path = array_keys($libraries['google-map-apis']['js']);
+    $old_path = $old_path[0];
+    if (strpos($old_path, 'key') == FALSE) {
+      $js_url = parse_url($old_path);
+      parse_str($js_url['query'], $js_url_query);
+
+      switch ($config->get('nearby_places_search_auth_method') ?: 1) {
+        case 1:
+          $js_url_query['key'] = $config->get('nearby_places_search_apikey') ?: '';
+          break;
+
+        case 2:
+          $client_id = $config->get('nearby_places_search_client_id') ?: '';
+          $private_key = $config->get('nearby_places_search_private_key') ?: '';
+          if (!empty($client_id)) {
+            $js_url_query['client'] = $client_id;
+            if (!empty($private_key)) {
+              $js_url_query['signature'] = $private_key;
+            }
+          }
+          break;
+      }
+
+      // Build the new js url with the modified params.
+      $js_url['query'] = http_build_query($js_url_query);
+
+      $new_js_url = '//' . $js_url['host'] . $js_url['path'] . '?' . $js_url['query'];
+
+      $new_js = [
+        $new_js_url => [],
+      ];
+      foreach ($libraries['google-map-apis']['js'][$old_path] as $key => $option) {
+        $new_js[$new_js_url][$key] = $option;
+      }
+      $libraries['google-map-apis']['js'] = $new_js;
+    }
+  }
+}
+
+/**
+ * Builds the druapl warning message based on authentication method.
+ */
+function nearby_places_search_build_api_msg() {
+  global $base_url;
+  $config = \Drupal::config('nearby_places_search.settings');
+
+  $api_msg = '';
+  $nearby_places_search_config_url = $base_url . '/admin/config/nearby_places_search/settings';
+
+  switch ($config->get('nearby_places_search_auth_method') ?: 1) {
+    case 1:
+      $key = $config->get('nearby_places_search_apikey') ?: '';
+      if (empty($key)) {
+        $api_msg = t('Google Map API key was not found. Please configure or enter a valid API key from <a target="_blank" href="@config_path">configuration</a> page.', ['@config_path' => $nearby_places_search_config_url]);
+      }
+      break;
+
+    case 2:
+      $client_id = $config->get('nearby_places_search_client_id') ?: '';
+      if (empty($client_id)) {
+        $api_msg = t('Google Map client id was not found. Please configure or enter a valid client id from <a target="_blank" href="@config_path">configuration</a> page.', ['@config_path' => $nearby_places_search_config_url]);
+      }
+      break;
+  }
+  return $api_msg;
+}

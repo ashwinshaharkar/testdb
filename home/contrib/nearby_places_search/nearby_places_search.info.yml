@@ -1,0 +1,16 @@
+name: Nearby places search
+type: module
+description: Nearby places search by place types with Google Map API
+# core: 8.x
+package: Other
+configure: nearby_places_search.admin_settings
+dependencies:
+  - libraries:libraries
+  - node
+  - block
+
+# Information added by Drupal.org packaging script on 2018-01-16
+version: '8.x-1.4'
+core: '8.x'
+project: 'nearby_places_search'
+datestamp: 1516096087

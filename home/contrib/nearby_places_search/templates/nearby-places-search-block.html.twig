@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Near By Place Search form tpl file.
+ */
+#}
+<div id="container">
+  <div id="map-content">
+    <div id="address_cls">
+      {{ form.address }}
+    </div>
+    <button id="cust_btn" type="button" class="cust_btn">{{ form.custom_btn }}</button>
+    <div id="map-container"></div>
+    <div id="bottom-section">
+      {{ form.latitude }}
+      {{ form.longitude }}
+    </div>
+  </div>
+  <div id="navbar">
+    {{ form.types }}
+  </div>
+</div>
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}

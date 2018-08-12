@@ -1,0 +1,8 @@
+name: "Custom Google Comparison Shopping Service"
+type: module
+description: "Google Comparison Shopping Service API"
+package: Custom
+core: 8.x
+configure: gcss.admin_settings
+dependencies:
+  - node

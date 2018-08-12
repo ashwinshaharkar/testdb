@@ -1,0 +1,16 @@
+nearby_places_search_admin:
+  css:
+    component:
+      css/nearby_places_search.css: {}
+
+nearby_places_search_block:
+  js:
+    js/nearby_places_search.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+google-map-apis:
+  js:
+    //maps.googleapis.com/maps/api/js?libraries=places&v=3: { type: external }

@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Google Products'
+type: google_products
+description: 'Content type that can be used to add <em>Google products information</em> page.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

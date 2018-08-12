@@ -1,0 +1,6 @@
+nearby_places_search.admin_settings:
+  title: 'Nearby places search'
+  route_name: nearby_places_search.admin_settings
+  description: 'Nearby places search configuration'
+  parent: system.admin_config_system
+  weight: 99
