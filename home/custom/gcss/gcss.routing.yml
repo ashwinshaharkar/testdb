@@ -19,7 +19,7 @@ gcss.insert_products:
     _admin_route: TRUE
 
 oauth2callback:
-  path: '/oauth2callback'
+  path: '/admin/oauth2callback'
   defaults:
     _controller: '\Drupal\gcss\Controller\Oauth2callback::oauth2callback'
     _title: 'OAuth2 callback event'

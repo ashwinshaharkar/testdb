@@ -108,11 +108,11 @@ class GcssForm extends ConfigFormBase
         $form['gcss_fieldset_client']['gcss_oauth2_callback_url'] = [
             '#type' => 'textfield',
             '#title' => $this->t('Oauth2 callback URL:'),
-            '#default_value' => $base_url.'/oauth2callback', //$config->get('gcss_oauth2_callback_url'),
+            '#default_value' => $base_url.'/admin/oauth2callback', //$config->get('gcss_oauth2_callback_url'),
             '#size' => 80,
             '#maxlength' => 255,
             '#attributes' => array('readonly' => 'readonly'),
-            '#description' => 'Please set this url as a callback url for oauth2 configuration',
+            '#description' => 'Please set this url as a callback url for oauth2 authentication',
             '#required' => false,
         ];
 
