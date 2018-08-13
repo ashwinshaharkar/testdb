@@ -49,10 +49,10 @@ class GcssForm extends ConfigFormBase
             '#type' => 'textfield',
             '#title' => $this->t('Merchant ID:'),
             '#default_value' => $config->get('gcss_merchant_id'),
-            '#size' => 40,
+            '#size' => 60,
             '#maxlength' => 255,
             '#description' => '',
-            '#required' => false,
+            '#required' => true,
         ];
 
         $form['gcss_fieldset_client'] = [
@@ -69,51 +69,51 @@ class GcssForm extends ConfigFormBase
             '#type' => 'textfield',
             '#title' => $this->t('Client ID:'),
             '#default_value' => $config->get('gcss_client_id'),
-            '#size' => 80,
+            '#size' => 100,
             '#maxlength' => 255,
             '#description' => '',
-            '#required' => false,
+            '#required' => true,
         ];
 
         $form['gcss_fieldset_client']['gcss_client_secret_key'] = [
             '#type' => 'textfield',
             '#title' => $this->t('Client secret key:'),
             '#default_value' => $config->get('gcss_client_secret_key'),
-            '#size' => 80,
+            '#size' => 100,
             '#maxlength' => 255,
             '#description' => '',
-            '#required' => false,
+            '#required' => true,
         ];
 
         $form['gcss_fieldset_client']['gcss_client_auth_config_file_name'] = [
             '#type' => 'textfield',
             '#title' => $this->t('Client auth config file name:'),
             '#default_value' => $config->get('gcss_client_auth_config_file_name'),
-            '#size' => 80,
+            '#size' => 100,
             '#maxlength' => 255,
-            '#description' => 'e.g. client_secrets.json<br/>Download client auth config file and please upload it under root directoy i.e <b>' . $base_url . '/</b>',
-            '#required' => false,
+            '#description' => 'e.g. client_secrets.json<br/>Download client auth config file and upload it under Drupal root directoy i.e <b>' . DRUPAL_ROOT . '\</b>',
+            '#required' => true,
         ];
 
         $form['gcss_fieldset_client']['gcss_developer_api_key'] = [
             '#type' => 'textfield',
             '#title' => $this->t('Developer / API key:'),
             '#default_value' => $config->get('gcss_developer_api_key'),
-            '#size' => 80,
+            '#size' => 100,
             '#maxlength' => 255,
             '#description' => '',
-            '#required' => false,
+            '#required' => true,
         ];
 
         $form['gcss_fieldset_client']['gcss_oauth2_callback_url'] = [
             '#type' => 'textfield',
             '#title' => $this->t('Oauth2 callback URL:'),
-            '#default_value' => $base_url.'/admin/oauth2callback', //$config->get('gcss_oauth2_callback_url'),
-            '#size' => 80,
+            '#default_value' => $base_url . '/admin/oauth2callback', //$config->get('gcss_oauth2_callback_url'),
+            '#size' => 100,
             '#maxlength' => 255,
             '#attributes' => array('readonly' => 'readonly'),
-            '#description' => 'Please set this url as a callback url for oauth2 authentication',
-            '#required' => false,
+            '#description' => 'Set this url as a callback url for your oauth2 authentication',
+            '#required' => true,
         ];
 
         return parent::buildForm($form, $form_state);

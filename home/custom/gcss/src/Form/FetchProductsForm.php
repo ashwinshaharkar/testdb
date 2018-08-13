@@ -4,6 +4,9 @@ namespace Drupal\gcss\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Google_Client;
+use Google_Service_ShoppingContent;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class FetchProductsForm.
@@ -38,13 +41,66 @@ class FetchProductsForm extends FormBase
      */
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
-        $nids = array();
+        global $base_url;
+        $products_arr = array();
+
+        // Start a session to persist credentials.
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        $config = \Drupal::config('gcss.settings');
+        $client_auth_file_name = $config->get('gcss_client_auth_config_file_name') ?: '/client_secrets.json';
+        $client_oauthCallbackUrl = $config->get('gcss_oauth2_callback_url');
+        $clientId = $config->get('gcss_client_id') ?: '';
+        $clientSecret = $config->get('gcss_client_secret_key') ?: '';
+        $developerKey = $config->get('gcss_developer_api_key') ?: '';
+        $merchantID = $config->get('gcss_merchant_id') ?: '';
+
+        if ($clientId && $clientSecret && $developerKey && $merchantID) {
+            // Create the client object and set the authorization configuration
+            // from the client_secretes.json you downloaded from the developer console.
+            $client = new Google_Client();
+            $client->setAuthConfig(DRUPAL_ROOT . '\\' . $client_auth_file_name);
+            $client->setAccessType('online'); // default: offline
+            $client->setIncludeGrantedScopes(true); // incremental auth
+            $client->setApplicationName('Content API for Shopping Samples');
+            $client->setScopes(Google_Service_ShoppingContent::CONTENT);
+            $client->setClientId($clientId);
+            $client->setClientSecret($clientSecret);
+            $client->setDeveloperKey($developerKey); // API key
+            $client->setIncludeGrantedScopes(true); // incremental auth
+
+            // If the user has already authorized this app then get an access token
+            // else redirect to ask the user to authorize access to Google Analytics.
+            if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+                // Set the access token on the client.
+                $client->setAccessToken($_SESSION['access_token']);
+                $service = new Google_Service_ShoppingContent($client);
+
+                $products = $service->products->listProducts($merchantID);
+                $parameters = array();
+                while (!empty($products->getResources())) {
+                    $products_arr = $products->getResources();
+                    if (!empty($products->getNextPageToken())) {
+                        break;
+                    }
+                    $parameters['pageToken'] = $products->nextPageToken;
+                    $products = $service->products->listProducts($merchantID, $parameters);
+                }
+
+            } else {
+                $response = new RedirectResponse($client_oauthCallbackUrl, 302);
+                $response->send();
+            }
+        }
+
         $batch = array(
             'title' => t('Fetching products...'),
             'operations' => array(
                 array(
                     '\Drupal\gcss\ProductOperations::FetchProducts',
-                    array($nids),
+                    array($products_arr),
                 ),
             ),
             'finished' => '\Drupal\gcss\ProductOperations::FetchProductsFinishedCallback',

@@ -9,7 +9,6 @@ Requirements
 Install "google/apiclient": "^2.0" library using composer
 
 i.e.
-  
 1. Update composer.json file
 "require": {
 	"google/apiclient": "^2.0"
