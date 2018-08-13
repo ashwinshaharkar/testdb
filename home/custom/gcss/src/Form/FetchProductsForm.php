@@ -77,18 +77,21 @@ class FetchProductsForm extends FormBase
                 // Set the access token on the client.
                 $client->setAccessToken($_SESSION['access_token']);
                 $service = new Google_Service_ShoppingContent($client);
-
-                $products = $service->products->listProducts($merchantID);
-                $parameters = array();
-                while (!empty($products->getResources())) {
-                    $products_arr = $products->getResources();
-                    if (!empty($products->getNextPageToken())) {
-                        break;
+                try {
+                    $products = $service->products->listProducts($merchantID);
+                    $parameters = array();
+                    while (!empty($products->getResources())) {
+                        $products_arr = $products->getResources();
+                        if (!empty($products->getNextPageToken())) {
+                            break;
+                        }
+                        $parameters['pageToken'] = $products->nextPageToken;
+                        $products = $service->products->listProducts($merchantID, $parameters);
                     }
-                    $parameters['pageToken'] = $products->nextPageToken;
-                    $products = $service->products->listProducts($merchantID, $parameters);
+                } catch (\Google_Service_Exception $e) {
+                    $response = new RedirectResponse($client_oauthCallbackUrl, 302);
+                    $response->send();
                 }
-
             } else {
                 $response = new RedirectResponse($client_oauthCallbackUrl, 302);
                 $response->send();
