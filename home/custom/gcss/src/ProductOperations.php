@@ -36,7 +36,7 @@ class ProductOperations
         if ($success) {
             $message = \Drupal::translation()->formatPlural(
                 count($results),
-                'One products processed.', '@count productss processed.'
+                'One product processed.', '@count products processed.'
             );
         } else {
             $message = t('Finished with an error.');

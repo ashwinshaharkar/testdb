@@ -87,11 +87,11 @@ class GcssForm extends ConfigFormBase
 
         $form['gcss_fieldset_client']['gcss_client_auth_config_file_name'] = [
             '#type' => 'textfield',
-            '#title' => $this->t('Client auth config file name:'),
+            '#title' => $this->t('Client oauth config file name:'),
             '#default_value' => $config->get('gcss_client_auth_config_file_name'),
             '#size' => 100,
             '#maxlength' => 255,
-            '#description' => 'e.g. client_secrets.json<br/>Download client auth config file and upload it under Drupal root directoy i.e <b>' . DRUPAL_ROOT . '\</b>',
+            '#description' => 'e.g. client_secrets.json<br/>Download client auth config file and upload it under Drupal root directory i.e <b>' . DRUPAL_ROOT . '\</b>',
             '#required' => true,
         ];
 
@@ -108,7 +108,7 @@ class GcssForm extends ConfigFormBase
         $form['gcss_fieldset_client']['gcss_oauth2_callback_url'] = [
             '#type' => 'textfield',
             '#title' => $this->t('Oauth2 callback URL:'),
-            '#default_value' => $base_url . '/admin/oauth2callback', //$config->get('gcss_oauth2_callback_url'),
+            '#default_value' => $base_url . '/admin/oauth2callback',
             '#size' => 100,
             '#maxlength' => 255,
             '#attributes' => array('readonly' => 'readonly'),
