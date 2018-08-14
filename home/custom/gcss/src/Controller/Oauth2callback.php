@@ -45,6 +45,7 @@ class Oauth2callback extends ControllerBase
         } else {
             $client->authenticate($_GET['code']);
             $_SESSION['access_token'] = $client->getAccessToken();
+            drupal_set_message(t('Oauth access token is re-generated, please try again.!'));
             $productURL = $base_url . '/admin/gcss/fetch-products';
             $response = new RedirectResponse($productURL, 302);
             $response->send();

@@ -80,8 +80,27 @@ class FetchProductsForm extends FormBase
                 try {
                     $products = $service->products->listProducts($merchantID);
                     $parameters = array();
+                    $i = 0;
                     while (!empty($products->getResources())) {
-                        $products_arr = $products->getResources();
+                        foreach ($products->getResources() as $product) {
+                            //check the prodcut is already exists or not in drupal
+                            $connection = \Drupal::database();
+                            $query = $connection->query("select count(field_gproduct_id_value) as cnt from node__field_gproduct_id where field_gproduct_id_value ='" . $product->getId() . "'");
+                            $result = $query->fetchAll();
+                            if ($result[0]->cnt == 0) {
+                                $products_arr[$i]['title'] = $product->getTitle();
+                                $products_arr[$i]['body'] = $product->getDescription();
+                                $products_arr[$i]['field_gproduct_link'] = $product->getLink();
+                                $products_arr[$i]['field_gproduct_gtin'] = $product->getGtin();
+                                $products_arr[$i]['field_gproduct_id'] = $product->getId();
+                                $products_arr[$i]['field_gproduct_brand'] = $product->getBrand();
+                                $products_arr[$i]['field_gproduct_image_link'] = $product->getImageLink();
+                                $products_arr[$i]['field_gproduct_price'] = $product->getPrice()->getValue();
+                                $products_arr[$i]['field_gproduct_currency'] = $product->getPrice()->getCurrency();
+                            }
+                            $i++;
+                        }
+                        //$products_arr = $products->getResources();
                         if (!empty($products->getNextPageToken())) {
                             break;
                         }

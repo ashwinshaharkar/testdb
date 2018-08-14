@@ -20,7 +20,7 @@ Installation and usages
 =======================
 
 1.	Install ‘Custom Google Comparison Shopping Service’ module as usual
-2.	It will create ‘Google Products’ content type automatically 
+2.	It will create ‘Google Products’ content type automatically with required fields
 3.	Go to the module configuration page i.e. admin/config/gcss/gcss-settings to configure merchant and oauth2 authentication configurations settings
 4.	Fetch products from : /admin/gcss/fetch-products
 
