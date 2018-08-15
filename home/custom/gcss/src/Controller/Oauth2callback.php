@@ -23,7 +23,7 @@ class Oauth2callback extends ControllerBase
         global $base_url;
         $config = \Drupal::config('gcss.settings');
         $client_auth_file_name = $config->get('gcss_client_auth_config_file_name') ?: '/client_secrets.json';
-        $client_oauthCallbackUrl = $config->get('gcss_oauth2_callback_url');
+        $client_oauthCallbackUrl = $base_url . $config->get('gcss_oauth2_callback_url');
 
         // Start a session to persist credentials.
         if (!isset($_SESSION)) {

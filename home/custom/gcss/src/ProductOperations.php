@@ -15,6 +15,7 @@ class ProductOperations
                 'type' => 'google_products',
                 'title' => $product['title'],
                 'body' => $product['body'],
+                'promote' => 0,
                 'field_gproduct_link' => $product['field_gproduct_link'],
                 'field_gproduct_gtin' => $product['field_gproduct_gtin'],
                 'field_gproduct_id' => $product['field_gproduct_id'],

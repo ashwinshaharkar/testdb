@@ -1,0 +1,28 @@
+{% set node_nid = fields.nid.content %}
+{% set node_path = path('entity.node.canonical', {'node': node_nid}) %}
+{% set product_title = fields.title.content %}
+{# {% set product_body = fields.body.content | render | striptags %} #}
+{% set product_img_src = fields.field_gproduct_image_link.content %}
+
+{# {% set product_id = fields.field_gproduct_id.content %}
+{% set product_gtin = fields.field_gproduct_gtin.content %} #}
+{% set product_brand = fields.field_gproduct_brand.content %}
+{# {% set product_link = fields.field_gproduct_link.content %} #}
+{% set product_price = fields.field_gproduct_price.content %}
+{% set product_currency = fields.field_gproduct_currency.content %}
+
+<div class="col-md-4">
+    <div class="thumbnail">
+        <img class="rounded mx-auto d-block" src="{{ product_img_src }}" alt="{{ product_title }}" style="width:100%">
+        <div class="caption">
+            <p>{{ product_title }}</p>
+            {# {% if product_body | length > 0 %}
+                <p>{{ product_body|length > 60 ? product_body|slice(0, 60) ~ '...' : product_body }}</p>
+            {% endif %} #}
+            <p>
+                <b>Brand:</b>&nbsp;&nbsp;{{ product_brand }}<br/>
+                <b>Price:</b>&nbsp;&nbsp;{{ product_price }}&nbsp;{{ product_currency }}
+            </p>
+        </div>
+    </div>
+</div>
