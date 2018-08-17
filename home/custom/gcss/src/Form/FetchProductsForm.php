@@ -56,12 +56,12 @@ class FetchProductsForm extends FormBase
         $clientSecret = $config->get('gcss_client_secret_key') ?: '';
         $developerKey = $config->get('gcss_developer_api_key') ?: '';
         $merchantID = $config->get('gcss_merchant_id') ?: '';
-
+        
         if ($clientId && $clientSecret && $developerKey && $merchantID) {
             // Create the client object and set the authorization configuration
             // from the client_secretes.json you downloaded from the developer console.
             $client = new Google_Client();
-            $client->setAuthConfig(DRUPAL_ROOT . '\\' . $client_auth_file_name);
+            $client->setAuthConfig(DRUPAL_ROOT . '/' . $client_auth_file_name);
             $client->setAccessType('online'); // default: offline
             $client->setIncludeGrantedScopes(true); // incremental auth
             $client->setApplicationName('Content API for Shopping Samples');

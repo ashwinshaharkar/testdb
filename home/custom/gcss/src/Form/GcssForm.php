@@ -91,7 +91,7 @@ class GcssForm extends ConfigFormBase
             '#default_value' => $config->get('gcss_client_auth_config_file_name'),
             '#size' => 100,
             '#maxlength' => 255,
-            '#description' => 'e.g. client_secrets.json<br/>Download client auth config file and upload it under Drupal root directory i.e <b>' . DRUPAL_ROOT . '\</b>',
+            '#description' => 'e.g. client_secrets.json<br/>Download client auth config file and upload it under Drupal root directory i.e <b>' . DRUPAL_ROOT . '/</b>',
             '#required' => true,
         ];
 

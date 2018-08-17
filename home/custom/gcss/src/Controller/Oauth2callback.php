@@ -33,7 +33,7 @@ class Oauth2callback extends ControllerBase
         // Create the client object and set the authorization configuration
         // from the client_secrets.json you downloaded from the Developers Console.
         $client = new Google_Client();
-        $client->setAuthConfig(DRUPAL_ROOT . '\\' . $client_auth_file_name);
+        $client->setAuthConfig(DRUPAL_ROOT . '/' . $client_auth_file_name);
         $client->setRedirectUri($client_oauthCallbackUrl);
         $client->setScopes(Google_Service_ShoppingContent::CONTENT);
 
