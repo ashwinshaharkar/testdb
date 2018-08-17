@@ -1,5 +1,11 @@
 /* --------------- Search Form ---------------- */
 
+/*Custom css: Starts*/ 
+#views-exposed-form-product-listing-page-1 .form-actions{
+  display: inline-block;
+  margin: 4px 0;
+}
+/*Custom css: Ends*/ 
 #block-search-form {
   padding-bottom: 7px;
 }

@@ -1,0 +1,40 @@
+{% set product_title = node.title.value %}
+{% set product_body = node.body.value %}
+{% set product_img_src = node.field_gproduct_image_link.value %}
+{% set product_id = node.field_gproduct_id.value %}
+{% set product_gtin = node.field_gproduct_gtin.value %}
+{% set product_brand = node.field_gproduct_brand.value %}
+{% set product_link = node.field_gproduct_link.value %}
+{% set product_price = node.field_gproduct_price.value %}
+{% set product_currency = node.field_gproduct_currency.value %}
+
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <div class="row fullheight">
+            <div class="col-sm-4 col-xs-12 fullheight sideBarBG">
+                <p>
+                    <img class="rounded mx-auto d-block" src="{{ product_img_src }}" alt="{{ product_title }}" style="width:100%">
+                </p>
+            </div>
+            <div class="col-sm-8 col-xs-12 fullheight">
+                {% if product_body | length > 0 %}
+                    <p>{{ product_body }}</p>
+                {% endif %}
+                <p>
+                    <b>ID:</b>&nbsp;&nbsp;{{ product_id }}</p>
+                <p>
+                    <b>GTIN:</b>&nbsp;&nbsp;{{ product_gtin }}</p>
+                <p>
+                    <b>BRAND:</b>&nbsp;&nbsp;{{ product_brand }}</p>
+                <p>
+                    <b>PRICE:</b>&nbsp;&nbsp;{{ product_price }}&nbsp;{{ product_currency }}</p>
+                <p>
+                    <a href="{{ product_link }}" target="_blank">READ MORE</a>
+                </p>
+            </div>
+        </div>
+        <!-- end row fullheight -->
+    </div>
+    <!-- end col-sm-12 -->
+</div>
+<!-- end container-fluid -->

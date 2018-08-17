@@ -7,15 +7,21 @@
 {# {% set product_id = fields.field_gproduct_id.content %}
 {% set product_gtin = fields.field_gproduct_gtin.content %} #}
 {% set product_brand = fields.field_gproduct_brand.content %}
-{# {% set product_link = fields.field_gproduct_link.content %} #}
+{% set product_link = fields.field_gproduct_link.content %}
 {% set product_price = fields.field_gproduct_price.content %}
 {% set product_currency = fields.field_gproduct_currency.content %}
 
-<div class="col-md-4">
+<div class="col-md-3">
     <div class="thumbnail">
-        <img class="rounded mx-auto d-block" src="{{ product_img_src }}" alt="{{ product_title }}" style="width:100%">
+        <a href="{{ node_path }}">
+            <img class="rounded mx-auto d-block" src="{{ product_img_src }}" alt="{{ product_title }}" style="width:100%">
+        </a>
         <div class="caption">
-            <p>{{ product_title }}</p>
+            <p>
+                {% if product_title | length > 0 %}
+                    <a href="{{ product_link }}" title="{{ product_title }}" target="_blank">{{ product_title|length > 35 ? product_title|slice(0, 35) ~ '...' : product_title }}</a>
+                {% endif %}
+            </p>
             {# {% if product_body | length > 0 %}
                 <p>{{ product_body|length > 60 ? product_body|slice(0, 60) ~ '...' : product_body }}</p>
             {% endif %} #}
