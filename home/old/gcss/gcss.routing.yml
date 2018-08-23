@@ -1,0 +1,39 @@
+gcss.admin_settings:
+  path: '/admin/config/gcss/gcss-settings'
+  defaults:
+    _form: '\Drupal\gcss\Form\GcssForm'
+    _title: 'Google Comparison Shopping Service Configuration'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+gcss.insert_products:
+  path: '/admin/gcss/fetch-products'
+  defaults:
+    _form: '\Drupal\gcss\Form\FetchProductsForm'
+    _title: 'Fetch products from google comparison shopping service API'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+oauth2callback:
+  path: '/admin/oauth2callback'
+  defaults:
+    _controller: '\Drupal\gcss\Controller\Oauth2callback::oauth2callback'
+    _title: 'OAuth2 callback event'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+gcss.merchant_account_settings:
+  path: '/admin/config/gcss/update-products'
+  defaults:
+    _form: '\Drupal\gcss\Form\UpdateProductsForm'
+    _title: 'Update products from google comparison shopping service API'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

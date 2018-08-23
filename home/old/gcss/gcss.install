@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Near By Place Search install file.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function gcss_requirements($phase)
+{
+    global $base_url;
+    $configuration_link = $base_url.'/admin/config/gcss/gcss-settings';
+    $requirements = [];
+    $config = \Drupal::config('gcss.settings');
+    if ($phase == 'runtime') {
+        $key_provided = false;
+        $merchant_id = $config->get('gcss_merchant_id') ?:'';
+        $client_id = $config->get('gcss_client_id') ?: '';
+        $client_secret_key = $config->get('gcss_client_secret_key') ?: '';
+        $config_file_name = $config->get('gcss_client_auth_config_file_name') ?: '';
+        $api_kay = $config->get('gcss_developer_api_key') ?: '';
+        $callback_url = $config->get('gcss_oauth2_callback_url') ?: '';
+        
+        if($merchant_id && $client_id && $client_secret_key && $config_file_name && $api_kay && $callback_url){
+          $key_provided = true;
+        }
+
+        if (!$key_provided) {
+            $requirements['gcss_map'] = [
+                'title' => t('Google Comparison Shopping Service API'),
+                'severity' => REQUIREMENT_ERROR,
+                'description' => t('Please configured required configuration <a href="@link">@link</a>', ['@link' => $configuration_link]),
+            ];
+        }
+    }
+
+    return $requirements;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function gcss_uninstall()
+{
+    $query = \Drupal::database()->select('config', 'c')
+        ->fields('c', ['name'])
+        ->condition('name', db_like('gcss.') . '%', 'LIKE')
+        ->execute();
+
+    $config_names = $query->fetchAll();
+
+    // Delete each config using configFactory.
+    foreach ($config_names as $config_name) {
+        \Drupal::configFactory()->getEditable($config_name->name)->delete();
+    }
+}
