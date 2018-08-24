@@ -1,0 +1,19 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function gcss_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
+        // Main module help for the cyb_helpdesk module.
+        case 'help.page.gcss':
+            $output = '';
+            $output .= check_markup(file_get_contents(dirname(__FILE__) . "/README.md"));
+            return $output;
+
+        default:
+    }
+}

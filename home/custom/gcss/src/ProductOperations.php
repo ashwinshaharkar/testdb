@@ -6,8 +6,7 @@ use \Drupal\node\Entity\Node;
 
 class ProductOperations
 {
-
-    public static function FetchProducts($products, &$context)
+    public static function UpdateProducts($products, &$context)
     {
         $message = '';
         foreach ($products as $product) {
@@ -24,13 +23,15 @@ class ProductOperations
                 'field_gproduct_price' => $product['field_gproduct_price'],
                 'field_gproduct_currency' => $product['field_gproduct_currency'],
             ]);
+            $node->field_gproduct_merchant->setValue(['target_id' => $product['field_gproduct_merchant']]);
             $node->save();
         }
+
         $context['message'] = $message;
         $context['results'] = $products;
     }
 
-    public static function FetchProductsFinishedCallback($success, $results, $operations)
+    public static function UpdateProductsFinishedCallback($success, $results, $operations)
     {
         // The 'success' parameter means no fatal PHP errors were detected. All
         // other error management should be handled using 'results'.
@@ -44,4 +45,5 @@ class ProductOperations
         }
         drupal_set_message($message);
     }
+
 }
